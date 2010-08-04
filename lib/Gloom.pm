@@ -1,12 +1,16 @@
 ### Gloom - a Great Little OO Module!
 ### Read perldoc Gloom::Doc for more information.
 use strict;
+use warnings;
 
-$Gloom::VERSION = '0.01';
+$Gloom::VERSION = '0.02';
 
 sub import {
     my ($class, $flag) = @_;
     my ($package, $module) = caller(0);
+
+    strict->import;
+    warnings->import;
 
     if ($class->isa(__PACKAGE__) and
         defined $flag and
@@ -187,11 +191,11 @@ sub EXPORT_BASE {
 
 =head1 NAME
 
-Gloom - Great Little OO Module
+Gloom - the Great Little OO Module
 
 =head1 SEE
 
-See Gloom::Doc for full details.
+See L<Gloom::Doc> for full details.
 
 =head1 AUTHOR
 

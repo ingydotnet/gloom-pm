@@ -2,20 +2,47 @@
 
 =head1 NAME
 
-Gloom::Doc - All About Gloom
+Gloom::Doc - All About Gloom (the Great Little OO Module)
 
 =head1 SYNOPSIS
 
-    package MyModule::Base;
+    package MyModule::OO;
     do 'MyModule/Gloom.pm';
+
+and:
+
+    package MyModule::Foo;
+    use MyModule::OO -base;
+
+and:
+
+    package MyModule::
 
 =head1 DESCRIPTION
 
 Gloom is a very small OO module that can be used by CPAN modules that
 need to be OO, but don't want to add a dependency module to do it.
 
-It provides inheritance, standard C<new> and C<init> constructor
-methods, and C<has> attribute accessors.
+Gloom provides single inheritance, standard C<new> and C<init> constructor
+methods, and C<has> attribute accessors. It also turns on C<strict> and
+C<warnings> automatically.
+
+Gloom is cascading. In other words, using Gloom as a base class for
+class C<Foo>, enables C<Foo> to later be used as a Gloomy base class.
+Using the C<-base> syntax invokes all the Gloom functionality.
+
+=head2 Accessors
+
+Gloom takes its C<has> accessors from Class::Field, so they are not
+Moose replicas. They are always read/write. They provide an optional
+default value as well as an optional initialization code snippet.
+
+    package Foo;
+    use Bar -base;
+
+    has 'this';
+    has 'that' => {};    # Defaults to a hash;
+    has 'thus', -init => '$self->set_thus';
 
 =head1 HOWTO
 

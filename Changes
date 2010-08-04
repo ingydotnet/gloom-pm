@@ -1,4 +1,10 @@
 ---
+version: 0.02
+date:    Tue Aug  3 17:12:58 PDT 2010
+changes:
+- Turn on strict and warnings automatically.
+- Write more doc.
+---
 version: 0.01
 date:    Tue Aug  3 02:11:51 PDT 2010
 changes:
