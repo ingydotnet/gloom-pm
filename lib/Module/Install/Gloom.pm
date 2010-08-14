@@ -10,7 +10,6 @@ BEGIN {
     @ISA     = 'Module::Install::Base';
 }
 
-use XXX;
 sub use_gloom {
     my $self = shift;
     my $target = shift
