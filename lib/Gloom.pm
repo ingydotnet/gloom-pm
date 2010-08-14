@@ -1,9 +1,33 @@
-### Gloom - a Great Little OO Module!
-### Read perldoc Gloom::Doc for more information.
+### Gloom - the Great Little OO Module!
+### Read `perldoc Gloom::Doc` for more information.
+
 use strict;
 use warnings;
 
-$Gloom::VERSION = '0.02';
+$Gloom::VERSION = '0.10';
+
+my $code = do { local $/; <DATA> };
+my $file = __FILE__;
+my $ok = 1;
+my $package =
+    join '::',
+    reverse
+    grep { $ok and (/^[A-Z]/ or do {$ok = 0}) }
+    reverse
+    split /[\/\\]/, $file;
+$package =~ s/\.pm//;
+
+eval <<"...";
+package $package;
+$code
+...
+die $@ if $@;
+
+1;
+
+__DATA__
+use strict;
+use warnings;
 
 sub import {
     my ($class, $flag) = @_;
@@ -193,7 +217,9 @@ sub EXPORT_BASE {
 
 Gloom - the Great Little OO Module
 
-=head1 SEE
+=head1 INFORMATION
+
+Gloom is an OO base module for Perl module authors.
 
 See L<Gloom::Doc> for full details.
 

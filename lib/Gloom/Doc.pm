@@ -1,3 +1,7 @@
+package Gloom::Doc;
+
+1;
+
 =encoding utf-8
 
 =head1 NAME
@@ -6,36 +10,126 @@ Gloom::Doc - All About Gloom (the Great Little OO Module)
 
 =head1 SYNOPSIS
 
-    package MyModule::OO;
-    do 'MyModule/Gloom.pm';
+In your C<Makefile.PL>:
+
+    use inc::Module::Install;
+    name 'MyMod';
+    use_gloom 'MyMod::OO';
+
+NOTE: Module::Install is not required to use Gloom. It just makes it a
+      trivial process. If you don't use Module::Install, you can
+      manually copy/symlink Gloom.pm to your C<lib/MyMod/OO.pm>.
+
+then in C<lib/MyMod/Foo.pm>:
+
+    package MyMod::Foo;
+    use MyMod::OO -base;
+
+    has 'foo';
 
 and:
 
-    package MyModule::Foo;
-    use MyModule::OO -base;
+    package MyMod::Foo::Bar;
+    use MyMod::Foo -base;
 
-and:
-
-    package MyModule::
+    has 'bar';
 
 =head1 DESCRIPTION
 
-Gloom is a very small OO module that can be used by CPAN modules that
-need to be OO, but don't want to add a dependency module to do it.
+Gloom is a simple, clean and small OO base module. It can be used by
+CPAN modules that need to be OO, but don't want to require a dependency
+module to do it.
 
-Gloom provides single inheritance, standard C<new> and C<init> constructor
-methods, and C<has> attribute accessors. It also turns on C<strict> and
-C<warnings> automatically.
+Gloom provides the OO basics like single inheritance, standard C<new>
+and C<init> constructor methods, and C<has> attribute accessors. It also
+turns on C<strict> and C<warnings> automatically.
 
-Gloom is cascading. In other words, using Gloom as a base class for
-class C<Foo>, enables C<Foo> to later be used as a Gloomy base class.
-Using the C<-base> syntax invokes all the Gloom functionality.
+Gloom is cascading. Using Gloom as a base class for class C<Foo>,
+enables C<Foo> to later be used as a Gloomy base class. Using the C<-base>
+syntax invokes all the Gloom functionality.
 
-=head2 Accessors
+=head1 WHENCE GLOOM?
 
-Gloom takes its C<has> accessors from Class::Field, so they are not
-Moose replicas. They are always read/write. They provide an optional
-default value as well as an optional initialization code snippet.
+Using basic idiomatic OO in Perl is problematic. Perl provides the
+lowest level mechanisms, but this is not even the bare minimum that you
+would find useable. You'd want at least an object constructor and
+property accessors.
+
+L<Moose> and friends is the way to do serious OO right, but Moose has
+issues too. Imagine you want to write a very simple CPAN module, and
+want to do it in the OO style. Adding a Moose prerequisite feels like
+adding an army tank to a flower arrangement. It's a huge installation
+pain for your users if its not already installed, and it still carries a
+startup performance penalty.
+
+This is where Gloom comes in. Gloom is a CPAN module author's friend. It
+provides OO basics with B<No Dependency Prerequisites>. You simply copy
+or symlink C<Gloom.pm> as your module's OO base module, then Gloom will
+figure out the rest.
+
+The great lesson of C<Module::Install> is that you can fix deficiencies
+in standard things like L<ExtUtils::MakeMaker> or even C<perl> itself,
+by shipping a little extra code with each module. With Gloom, you always
+ship Gloom.pm, renamed as your OO base module.
+
+If you use L<Module::Install>, all you need to do is add a line to your
+C<Makefile.PL> file. It will create a Gloom based OO module for you and
+keep it up to date. Just imagine, all your Perl OO needs resolved with
+one line in a Makefile.PL! See L<Module::Install::Gloom> for details.
+
+The great lesson of L<Spiffy> was OO feature propagation/cascading. When
+a module is a Gloom subclass, it can be used as a first-rate Gloom base
+class.
+
+Spiffy was not well received by some people because it used source
+filtering for a couple unrelated things. Just for the record, Gloom uses
+no source filtering or any other fancy magics.
+
+Gloom has nothing except the OO basics that everyone wants. Gloom makes
+simple Perl OO something that you don't need to worry about.
+
+=head1 FEATURES
+
+This is the more full documentation of Gloom's OO features:
+
+=head2 Usage, Inheritance and Cascading
+
+When you use a Gloom subclass module, you can pass it the C<-base>
+option to establish single inheritance to that module. In other words,
+that module becomes your module's base or parent class.
+
+    package My::Foo;
+    use My::OO -base;
+
+Now you are free to use My::Foo as a base class for some other class:
+
+    package Your::Foo;
+    use My::Foo -base;
+    
+    has 'what_you_want';
+
+My::Foo has all the exact same powers of OO cascading as Gloom itself.
+
+Note that My::OO is an exact copy of Gloom.pm. You don't change anything
+in the file. The code sees how it was called and adapts the package name
+on the fly.
+
+=head2 Constructor
+
+Gloom has a C<new()> class method. It creates an object and calls
+C<<$self->init(@_)>>.
+
+The default C<init()> method expects its arguments to be a list of
+property name/value pairs. You can easily subclass C<init()> to do
+things differently.
+
+=head2 Property Accessor Generators
+
+Gloom provides C<has> accessors that work exactly like the C<field>
+accessors from C<Class::Field>. (C<has> has become the Perl standard
+name for property constructors). The properties are always read/write.
+They provide an optional default value as well as an optional
+initialization code snippet.
 
     package Foo;
     use Bar -base;
@@ -44,41 +138,49 @@ default value as well as an optional initialization code snippet.
     has 'that' => {};    # Defaults to a hash;
     has 'thus', -init => '$self->set_thus';
 
-=head1 HOWTO
+You can also mark them to support method chaining:
 
-If I have an OO CPAN module called Foo, I symlink lib/Foo/Gloom.pm to
-the Gloom.pm in the Gloom repository (see below). (When you make a tarball, Perl
-turns the symlink into a copied real file.)
+    has 'this', -chain;
+    has 'that';
 
-Then I create a module called Foo::Base that looks like this:
+    $self->this('one')->that('two');
 
-    package Foo::Base;
-    do 'Foo/Gloom.pm';
+NOTE: Gloom C<has()> is completely different in usage from Moose C<has()>.
 
-That's it. Now I can make Foo::Bar OO like this:
+=head2 Exporting
 
-    package Foo::Bar;
-    use Foo::Base -base;
-    has 'stuff';
+Gloom and all its subclasses export the C<has()> function. You can have
+your base class export more things by simply defining the L<Exporter>
+variables, like:
 
-and:
+    our @EXPORT = qw(foo bar);
+    our @EXPORT_OK = qw(baz);
 
-    package Foo::Bar::Baz;
-    use Foo::Bar -base;
-    has 'more_stuff';
+=head2 Other Stuff
 
-=head1 WHY DO?
+Since the C<has> generators always return a true value, you usually
+don't need the annoying:
 
-You don't I<use> Gloom, you I<do> it. Gloom.pm has no package statement.
-Perl's C<do> command will still find it in the C<@ISA> path, but it will
-eval the code under your package.
+    1;
 
-=head1 REPOSITORY
+line at the bottom of your Gloom based modules. The true value they
+return is the Perl source code of the accessor. You can see this by
+doing something like:
 
-L<http://github.com/ingydotnet/gloom-pm>
+    print has 'foo' -init => '$self->init_foo';
 
-If you use the symlink trick, you'll probably want to checkout this repo
-next to you other repos.
+Like Moose, using Gloom (or any subclass of Gloom) as a base class, will
+automagically do the equivalent of:
+
+    use strict;
+    use warnings;
+
+=head1 REPOSITORY AND COMMUNITY
+
+The Gloom module can be found on CPAN and on GitHub:
+L<http://github.com/ingydotnet/gloom-pm>.
+
+Please join #gloom on irc.perl.org to discuss the new Gloom of Perl.
 
 =head1 AUTHOR
 
