@@ -23,7 +23,7 @@ sub use_gloom {
 
 =head1 NAME
 
-Module::Install::TestML - Module::Install Support for Gloom
+Module::Install::Gloom - Module::Install Support for Gloom
 
 =head1 SYNOPSIS
 
