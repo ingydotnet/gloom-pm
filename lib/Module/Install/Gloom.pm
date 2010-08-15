@@ -4,11 +4,8 @@ use warnings;
 
 use Module::Install::Base;
 
-use vars qw($VERSION @ISA);
-BEGIN {
-    $VERSION = '0.11';
-    @ISA     = 'Module::Install::Base';
-}
+use vars qw(@ISA);
+BEGIN { @ISA = 'Module::Install::Base' }
 
 sub use_gloom {
     my $self = shift;
@@ -16,7 +13,7 @@ sub use_gloom {
         or die "use_gloom requires the name of a target module";
     $target =~ s/::/\//g;
     $target = "lib/$target.pm";
-    my $gloom_path = $self->admin->find_in_inc('Gloom');
+    my $gloom_path = $self->admin->find_in_inc('Gloom') or return;
     $self->admin->copy($gloom_path => $target);
 }
 
