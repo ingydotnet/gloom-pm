@@ -1,33 +1,13 @@
-### This is Gloom - the Great Little OO Module!
-### Read `perldoc Gloom::Doc` for more information about Gloom.
+### This module was derived from Gloom - the Great Little OO Module!
+### Read `perldoc Gloom` for more information.
 
+package Gloom;
+
+use 5.008003;
 use strict;
 use warnings;
 
-$Gloom::VERSION = '0.11';
-
-my $code = do { local $/; <DATA> };
-
-my $package = __FILE__;
-for my $inc (sort { length($b) <=> length($a) } @INC) {
-    $package =~ s/^\Q$inc\E[\\\/]// and last;
-}
-die "Gloom can't determine package name from '$package'"
-    if $package eq __FILE__;
-$package =~ s/[\\\/]/::/g;
-$package =~ s/\.pm//;
-
-eval <<"...";
-package $package;
-$code
-...
-die $@ if $@;
-
-1;
-
-__DATA__
-use strict;
-use warnings;
+our $VERSION = '0.12';
 
 sub import {
     my ($class, $flag) = @_;
@@ -213,32 +193,3 @@ sub EXPORT_BASE {
     return map { __PACKAGE__ . '::' .$_ }
         qw(has WWW XXX YYY ZZZ);
 }
-
-1;
-
-=encoding utf-8
-
-=head1 NAME
-
-Gloom - the Great Little OO Module
-
-=head1 INFORMATION
-
-Gloom is an OO base module for Perl module authors.
-
-See L<Gloom::Doc> for full details.
-
-=head1 AUTHOR
-
-Ingy döt Net <ingy@cpan.org>
-
-=head1 COPYRIGHT
-
-Copyright (c) 2010. Ingy döt Net.
-
-This program is free software; you can redistribute it and/or modify it
-under the same terms as Perl itself.
-
-See http://www.perl.com/perl/misc/Artistic.html
-
-=cut

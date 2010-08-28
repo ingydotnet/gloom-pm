@@ -1,12 +1,8 @@
-package Gloom::Doc;
-
-1;
-
 =encoding utf-8
 
 =head1 NAME
 
-Gloom::Doc - All About Gloom (the Great Little OO Module)
+Gloom::Doc - Gloom (the Great Little OO Module)
 
 =head1 SYNOPSIS
 
