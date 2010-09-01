@@ -1,4 +1,9 @@
 ---
+version: 0.14
+date:    Tue Aug 31 18:27:32 PDT 2010
+changes:
+- t/install.t fails without module install
+---
 version: 0.12
 date:    Fri Aug 27 19:39:26 PDT 2010
 changes:
