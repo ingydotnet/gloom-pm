@@ -1,4 +1,9 @@
 ---
+version: 0.15
+date:    Thu Sep  9 17:23:54 PDT 2010
+changes:
+- Only use_gloom for M::I admin
+---
 version: 0.14
 date:    Tue Aug 31 18:27:32 PDT 2010
 changes:
