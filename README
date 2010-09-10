@@ -1,5 +1,5 @@
 NAME
-    Gloom::Doc - All About Gloom (the Great Little OO Module)
+    Gloom::Doc - Gloom (the Great Little OO Module)
 
 SYNOPSIS
     In your "Makefile.PL":
@@ -7,10 +7,6 @@ SYNOPSIS
         use inc::Module::Install;
         name 'MyMod';
         use_gloom 'MyMod::OO';
-
-    NOTE: Module::Install is not required to use Gloom. It just makes it a
-    trivial process. If you don't use Module::Install, you can manually
-    copy/symlink Gloom.pm to your "lib/MyMod/OO.pm".
 
     then in "lib/MyMod/Foo.pm":
 
@@ -25,6 +21,11 @@ SYNOPSIS
         use MyMod::Foo -base;
 
         has 'bar';
+
+  NOTE
+    Module::Install is not required to use Gloom. It just makes it a trivial
+    process. If you don't use Module::Install, you can manually copy/symlink
+    Gloom.pm to your "lib/MyMod/OO.pm".
 
 DESCRIPTION
     Gloom is a simple, clean and small OO base module. It can be used by

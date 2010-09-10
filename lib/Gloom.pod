@@ -12,10 +12,6 @@ In your C<Makefile.PL>:
     name 'MyMod';
     use_gloom 'MyMod::OO';
 
-NOTE: Module::Install is not required to use Gloom. It just makes it a
-      trivial process. If you don't use Module::Install, you can
-      manually copy/symlink Gloom.pm to your C<lib/MyMod/OO.pm>.
-
 then in C<lib/MyMod/Foo.pm>:
 
     package MyMod::Foo;
@@ -29,6 +25,12 @@ and:
     use MyMod::Foo -base;
 
     has 'bar';
+
+=head2 NOTE
+
+Module::Install is not required to use Gloom. It just makes it a trivial
+process. If you don't use Module::Install, you can manually copy/symlink
+Gloom.pm to your C<lib/MyMod/OO.pm>.
 
 =head1 DESCRIPTION
 
