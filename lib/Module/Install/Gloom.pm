@@ -1,11 +1,13 @@
+use 5.008003;
 package Module::Install::Gloom;
 use strict;
 use warnings;
 
 use Module::Install::Base;
 
-use vars qw(@ISA);
-BEGIN { @ISA = 'Module::Install::Base' }
+use base 'Module::Install::Base';
+our $VERSION = '0.16';
+our $AUTHOR_ONLY = 1;
 
 sub use_gloom {
     my $self = shift;
