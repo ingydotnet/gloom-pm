@@ -3,6 +3,8 @@ version: 0.16
 date:    
 changes:
 - Add manifest_skip and readme_from to Makefile.PL
+- Add $Module::Install::Gloom::VERSION
+- Switch to Module::Package
 ---
 version: 0.15
 date:    Thu Sep  9 18:08:33 PDT 2010
