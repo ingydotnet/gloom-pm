@@ -1,4 +1,9 @@
 ---
+version: 0.17
+date:    Mon Sep  5 09:44:44 BST 2011
+changes:
+- Add XXX_skip for XXX proxying.
+---
 version: 0.16
 date:    Fri Aug 19 20:50:09 EEST 2011
 changes:
