@@ -6,7 +6,7 @@ use warnings;
 use Module::Install::Base;
 
 use base 'Module::Install::Base';
-our $VERSION = '0.16';
+our $VERSION = '0.18';
 our $AUTHOR_ONLY = 1;
 
 sub use_gloom {

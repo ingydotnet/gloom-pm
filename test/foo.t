@@ -1,5 +1,8 @@
+use strict;
+use File::Basename;
+use lib dirname(__FILE__), 'inc';
+
 use Test::More tests => 1;
-use lib 't';
 use Foo::Bar;
 
 my $o = Foo::Bar->new(this => 'Gloomy');

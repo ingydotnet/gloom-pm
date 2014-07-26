@@ -8,7 +8,7 @@ has 'this';
 
 =head1 NAME
 
-Foo - Testing the Mousse
+Foo - Testing the Gloom
 
 =head1 AUTHOR
 
