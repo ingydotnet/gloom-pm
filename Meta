@@ -1,7 +1,7 @@
 =meta: 0.0.1
 
 name: Gloom
-version: 0.18
+version: 0.19
 abstract: Gloom (the Great Little OO Module)
 homepage: https://metacpan.org/release/Gloom
 
@@ -21,8 +21,8 @@ requires:
 devel:
   git: http://github.com/ingydotnet/gloom-pm
   bug: https://github.com/ingydotnet/gloom-pm/issues
-  irc: irc.freenode.net#ingy
+  irc: irc.freenode.net#pkg
 
 =travis:
   type: perl
-  irc: irc.freenode.net#ingy
+  irc: irc.freenode.net#pkg
