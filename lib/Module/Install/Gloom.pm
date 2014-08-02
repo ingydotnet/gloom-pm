@@ -6,7 +6,7 @@ use warnings;
 use Module::Install::Base;
 
 use base 'Module::Install::Base';
-our $VERSION = '0.19';
+our $VERSION = '0.20';
 our $AUTHOR_ONLY = 1;
 
 sub use_gloom {
@@ -72,7 +72,7 @@ Ingy döt Net <ingy@cpan.org>
 
 =head1 COPYRIGHT
 
-Copyright (c) 2010. Ingy döt Net.
+Copyright (c) 2010-2014. Ingy döt Net.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
