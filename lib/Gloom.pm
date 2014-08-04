@@ -7,7 +7,7 @@ use 5.008003;
 use strict;
 use warnings;
 
-our $VERSION = '0.20';
+our $VERSION = '0.21';
 
 use constant XXX_skip => 1;
 
