@@ -1,13 +1,9 @@
 ### This module was derived from Gloom - the Great Little OO Module!
 ### Read `perldoc Gloom` for more information.
 
+use strict; use warnings;
 package Gloom;
-
-use 5.008003;
-use strict;
-use warnings;
-
-our $VERSION = '0.24';
+our $VERSION = '0.25';
 
 use constant XXX_skip => 1;
 

@@ -1,7 +1,7 @@
 =meta: 0.0.2
 
 name: Gloom
-version: 0.24
+version: 0.25
 abstract: Gloom (the Great Little OO Module)
 homepage: https://metacpan.org/release/Gloom
 language: perl
