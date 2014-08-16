@@ -1,28 +1,25 @@
-=meta: 0.0.1
+=meta: 0.0.2
 
 name: Gloom
-version: 0.23
+version: 0.24
 abstract: Gloom (the Great Little OO Module)
 homepage: https://metacpan.org/release/Gloom
-
+language: perl
 license: perl
-copyright: 2010-2014. Ingy döt Net.
+copyright: 2010-2014
+
 author:
   name: Ingy döt Net
   email: ingy@cpan.org
+  homepage: http://ingy.net
   github: ingydotnet
   twitter: ingydotnet
   freenode: ingy
-  homepage: http://ingy.net
-
-requires:
-  perl: 5.8.1
 
 devel:
   git: http://github.com/ingydotnet/gloom-pm
   bug: https://github.com/ingydotnet/gloom-pm/issues
   irc: irc.freenode.net#pkg
 
-=travis:
-  type: perl
-  irc: irc.freenode.net#pkg
+requires:
+  perl: 5.8.1
