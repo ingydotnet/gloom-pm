@@ -93,12 +93,12 @@ my %code = (
       "  do { local \$_ = \$_[1]; my \$self = \$_[0]; %s };\n",
     chain =>
       "  return \$_[0];\n}\n",
-    sub_end => 
+    sub_end =>
       "  return \$_[0]->{%s};\n}\n",
 );
 
 my $parse_arguments = sub {
-    my $paired_arguments = shift || []; 
+    my $paired_arguments = shift || [];
     my ($args, @values) = ({}, ());
     my %pairs = map { ($_, 1) } @$paired_arguments;
     while (@_) {
@@ -113,7 +113,7 @@ my $parse_arguments = sub {
             push @values, $elem;
         }
     }
-    return wantarray ? ($args, @values) : $args;        
+    return wantarray ? ($args, @values) : $args;
 };
 
 my $default_as_code = sub {
