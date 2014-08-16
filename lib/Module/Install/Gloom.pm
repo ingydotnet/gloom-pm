@@ -1,6 +1,6 @@
 use strict; use warnings;
 package Module::Install::Gloom;
-our $VERSION = '0.21';
+our $VERSION = '0.22';
 
 use Module::Install::Base;
 
